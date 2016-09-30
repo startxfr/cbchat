@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:ng="http://angularjs.org" ng-app="cbchatCell" ng-controller="appCtrl">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="POK cbchat">
+        <meta name="keywords" content="killer app">
+        <meta name="author" content="dev@startx.fr">
+        <title>TempApp</title>
+        <link href='http://fonts.googleapis.com/css?family=Biryani:900|Questrial' rel='stylesheet' type='text/css'>
+        <link href="/jss/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/jss/bootstrap-tagsinput.css" rel="stylesheet">
+        <link href="/jss/cbchat.css" rel="stylesheet">
+        <link href="/jss/webapp.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body ng-controller="navCtrl">
+        <nav id="topbar" class="navbar navbar-default navbar-fixed-top" role="navigation" ng-style="topbarStyle">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topbar-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#home">
+                        <h1><img src="img/tempApp.svg" height="36" alt="TempApp"/> Temp</h1>
+                    </a>
+                </div>
+                <div id="topbar-nav" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li ng-class="{ active: mainView === 'current' }" class="dropdown">
+                            <a href="#current" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>Current cell
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#fakeCell"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>Cell sample 1</a></li>
+                                <li><a href="#fakeCell"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>Cell sample 2</a></li>
+                                <li><a href="#fakeCell"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>Cell sample 3</a></li>
+                            </ul>
+                        </li>
+                        <li ng-class="{ active: mainView === 'search' }" class="dropdown">
+                            <a href="#search" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Find cell
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#search/by_location"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>By location</a></li>
+                                <li><a href="#search/by_invitation"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>Invitation</a></li>
+                                <li><a href="#search/by_qrcode"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>Scan QRCode</a></li>
+                                <li><a href="#search/by_search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</a></li>
+                            </ul>
+                        </li>
+                        <li ng-class="{ active: mainView === 'history' }"><a href="#history"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>History</a></li>
+                        <li ng-class="{ active: mainView === 'addCell' }"><a href="#addCell"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Create cell</a></li>
+                        <li ng-class="{ active: mainView === 'fakeCell' }"><a href="#fakeCell"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>Fake cell</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-show="isDebug === true">
+                            <a href="javascript:void" ng-click="mainView = 'debug'">
+                                <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                                <span class="visible-xs-inline">Debug</span>
+                            </a>
+                        </li>
+                        <li ng-class="{ active: mainView === 'myprofile' }">
+                            <a href="#myprofile">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                <span class="visible-xs-inline">My profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#quit">
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                <span class="visible-xs-inline">Quit</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fuild page" ng-show="mainView === 'fakeCell'" id="cellPage">
+            <iframe src="http://localhost:8080/" width="100%" height="95%"></iframe>
+        </div>
+        <div class="container page" ng-show="mainView === 'home'" id="homePage">
+            <div class="page-header">
+                <h1><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Welcome to temp</h1>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img/home/map.png" alt="find by location">
+                        <div class="caption">
+                            <h3>Find nearby cells</h3>
+                            <p>Find cells around your location</p>
+                            <p>
+                                <input type="text" class="form-control" placeholder="your location"  name="location"/>
+                            </p>
+                            <p>
+                                <a href="#search" class="btn btn-primary" role="button">1km</a> 
+                                <a href="#search" class="btn btn-default" role="button">5km</a> 
+                                <a href="#search" class="btn btn-default" role="button">10km</a> 
+                                <a href="#search" class="btn btn-default" role="button">25km</a> 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img/home/jump.png" alt="find by location">
+                        <div class="caption">
+                            <h3>Jump to a cell</h3>
+                            <p>Join a cell you know directly</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Cell ID"  name="cellid"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <p><a href="#fakeCell" class="btn btn-default" role="button">Go</a> </p>
+                                </div>
+                            </div>
+                            <p>
+                                <a href="#fakeCell" class="btn btn-primary" role="button">
+                                    <span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>Scan QRCode
+                                </a> 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Discover activities</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Discover in-cell provided activities and find current cells providing activities you like </p>
+                            <p>
+                                <a href="#activities" class="btn btn-info">See all activities <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Find friends</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Search friends and join them in cells or invite your friends into your currents cells. </p>
+                            <p>
+                                <a href="#friends" class="btn btn-info">Invite & join my friends <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container page" ng-show="mainView === 'history'" ng-controller="historyCellCtrl" id="historyPage">
+            <div class="page-header">
+                <h1><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>History of your cell's visits</h1>
+            </div>
+            <cell-history-list></cell-history-list>
+        </div>
+        <div class="container page" ng-show="mainView === 'addCell'" ng-controller="cellCtrl" id="addCellPage">
+            <div class="page-header">
+                <h1><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Create your cell</h1>
+            </div>
+            <cell-add-form></cell-add-form>
+        </div>
+        <div class="container page" ng-show="mainView === 'current'" ng-controller="cellCtrl" id="currentPage">
+            <div class="page-header">
+                <h1><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>Your current connections to tempCell's</h1>
+            </div>
+            <cell-current-list></cell-current-list>
+        </div>
+        <div class="container page" ng-show="mainView === 'search'" ng-controller="cellCtrl" id="searchPage">
+            <div class="page-header">
+                <h1><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search for currents cell's</h1>
+            </div>
+            <cell-search-panel></cell-search-panel>
+        </div>
+        <div class="container page" ng-show="mainView === 'myprofile'" ng-controller="myprofileCtrl" id="myprofilePage">
+            <div class="page-header">
+                <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Configure your profile</h1>
+            </div>
+            <profile-form></profile-form>
+        </div>
+        <div class="container page" ng-show="mainView === 'debug'" ng-controller="appCtrl" id="debugPage">
+            <div class="page-header">
+                <h1><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>Debug Area !!!</h1>
+            </div>
+            <div class="col-sm-6">
+                <h3>App parameters</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>version</strong></td>
+                            <td>{{app.version}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>platform</strong></td>
+                            <td>{{app.platform}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <h3>API parameters</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>url</strong></td>
+                            <td>{{api.url}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>version</strong></td>
+                            <td>{{api.version}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>health</strong></td>
+                            <td>{{api.health}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script type="text/javascript" src="/jss/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="/jss/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/jss/bootstrap-tagsinput.min.js"></script>
+        <script type="text/javascript" src="/jss/async.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+        <script type="text/javascript" src="/jss/angular.min.js"></script>
+        <script type="text/javascript" src="/jss/cbchat.js"></script>
+        <script type="text/javascript" src="/jss/webapp.js"></script>
+    </body>
+</html>

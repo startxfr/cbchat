@@ -1,0 +1,27 @@
+{
+  "author": "startxfr",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/startxfr/cbchat/issues"
+  },
+  "dependencies": {
+    "express": "3.20.2"
+  },
+  "description": "sample app for Couchbase",
+  "private": true,
+  "version": "0.0.5",
+  "name": "cbchat-app",
+  "keywords": [
+    "couchbase",
+    "openshift",
+    "startx"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/startxfr/cbchat.git"
+  },
+  "scripts": {
+    "test": "app.js"
+  },
+  "main": "app.js"
+}

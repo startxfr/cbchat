@@ -1,0 +1,195 @@
+<div role="tabpanel" id="profileForm">
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills nav-justified" role="tablist">
+        <li role="presentation" class="active"><a href="#tab_myprofile_profile" aria-controls="home" role="tab" data-toggle="tab">Profile</a></li>
+        <li role="presentation"><a href="#tab_myprofile_mypsn" aria-controls="profile" role="tab" data-toggle="tab">My PSN <span class="badge">2</span></a></li>
+        <li role="presentation"><a href="#tab_myprofile_activities" aria-controls="profile" role="tab" data-toggle="tab">Activities <span class="badge">2/3</span></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab_myprofile_profile">
+            <div class="panel-body">
+                <form class="form-horizontal" id="formMyprofileProfile" name="formMyprofileProfile" data-ng-submit="updateProfil()">
+                    <div class="form-group">
+                        <label for="myprofile_profile_username" class="col-sm-2 control-label">Username</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="myprofile_profile_username" placeholder="username" name="username" ng-model="profile.username">
+                        </div>
+                        <div class="col-sm-4 form-helptxt">
+                            <p class="text-muted hidden">Username used on this cell. Could be anything exept an existing default username</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="myprofile_profile_gender" class="col-sm-2 control-label">Gender</label>
+                        <div class="col-sm-6">
+                            <select id="myprofile_profile_gender" class="form-control" name="prop" ng-model="profile.gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="">Hidden</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4 form-helptxt">
+                            <p class="text-muted hidden">Default is your cbchat account gender</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="myprofile_profile_birthdate" class="col-sm-2 control-label">Birth date</label>
+                        <div class="col-sm-6">
+                            <input type="date" class="form-control" id="myprofile_profile_birthdate" name="birthdate" ng-model="profile.birthdate">
+                        </div>
+                        <div class="col-sm-4 form-helptxt">
+                            <p class="text-muted hidden">Default is your cbchat account birthdate</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="myprofile_profile_picture" class="col-sm-2 control-label">Photo</label>
+                        <div class="col-sm-4">
+                            <input type="file" class="form-control" id="myprofile_profile_picture" name="picture" ng-model="profile.picture">
+                        </div>
+                        <div class="col-sm-2" ng-if="profile.picture !== null">
+                            <img src="img/users/{{profile.picture}}.png" style="float:right">
+                        </div>
+                        <div class="col-sm-2" ng-if="profile.picture === null">
+                            <img src="/img/user-default.png" style="float:right">
+                        </div>
+                        <div class="col-sm-4 form-helptxt">
+                            <p class="text-muted hidden">Your picture must be in png, square format and with 120px x 120px min. Default is your cbchat account picture</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> Save my profile</button>
+                            <button ng-click="razProfil()" ng-disabled="formMyprofileProfile.$pristine" class="btn btn-warning"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab_myprofile_mypsn">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>Facebook</strong>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><a href="http://facebook.com">Christophe LARUE</a></p>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="#profile" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Remove</a>
+                    </div>
+                    <div class="col-sm-4 form-helptxt">
+                        <p class="text-muted hidden">Allow cotemp to see your Facebook account in your profile and possibily interact with you through this network</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>Meetup</strong>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><a href="http://facebook.com">Chris Tof</a></p>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="#profile" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Remove</a>
+                    </div>
+                    <div class="col-sm-4 form-helptxt">
+                        <p class="text-muted hidden">Allow cotemp to see your Meetup account in your profile and possibily interact with you through this network</p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>Google +</strong>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><a href="#profile/addPSN">Associate a Google + account</a></p>
+                    </div>
+                    <div class="col-sm-4 form-helptxt">
+                        <p class="text-muted hidden">Allow cotemp to see your google+ detail in your profile and possibily interact with you through this network</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>LinkedIn</strong>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><a href="#profile/addPSN">Associate a LinkedIn account</a></p>
+                    </div>
+                    <div class="col-sm-4 form-helptxt">
+                        <p class="text-muted hidden">Allow cotemp to see your LinkedIn account in your profile and possibily interact with you through this network</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>Meetup</strong>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><a href="#profile/addPSN">Associate a Meetup account</a></p>
+                    </div>
+                    <div class="col-sm-4 form-helptxt">
+                        <p class="text-muted hidden">Allow cotemp to see your Meetup profile in your profile and possibily interact with you through this network</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab_myprofile_activities">
+            <div class="panel-body">
+                <div class="row" style="border-bottom: 1px solid #ccc; margin-bottom:8px">
+                    <div class="col-sm-7">
+                        <p><img src="img/activities/chess.png" alt="find by location" style="float:left; margin-right: 10px; width: 40px">
+                            <strong><a href="http://facebook.com">Chess</a></strong><br>
+                            Chess single or multi-player available in-cell</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#profile" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Configure</a>
+                        <button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> View score</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <a href="#profile" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Remove</a>
+                    </div>
+                </div>
+                <div class="row" style="border-bottom: 1px solid #ccc; margin-bottom:8px">
+                    <div class="col-sm-7">
+                        <p><img src="img/activities/fileexchange.png" alt="find by location" style="float:left; margin-right: 10px; width: 40px">
+                            <strong><a href="http://facebook.com">File Exchange</a></strong><br>
+                            Exchange file between cotemp when your in a cell</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#profile" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Configure</a>
+                        <button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> View history</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <a href="#profile" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Remove</a>
+                    </div>
+                </div>
+                <div class="row" style="border-bottom: 1px solid #ccc; margin-bottom:8px">
+                    <div class="col-sm-7">
+                        <p><img src="img/activities/meetup.png" alt="find by location" style="float:left; margin-right: 10px; width: 40px">
+                            <strong><a href="http://facebook.com">Meetup</a></strong><br>
+                            Allow cotemp to subscribe to a meetup group </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <em>No configuration</em>
+                    </div>
+                    <div class="col-sm-1">
+
+                    </div>
+                </div>
+                <div class="row" style="border-bottom: 1px solid #ccc; margin-bottom:8px">
+                    <div class="col-sm-7">
+                        <p><img src="img/activities/treasurequest.png" alt="find by location" style="float:left; margin-right: 10px; width: 40px">
+                            <strong><a href="http://facebook.com">Treasure Quest</a></strong><br>
+                            Allow you to participate to a treasure quest managed by temp-manager</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> View history</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <a href="#profile" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Remove</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

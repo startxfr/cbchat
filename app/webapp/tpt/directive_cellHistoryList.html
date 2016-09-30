@@ -1,0 +1,82 @@
+<table class="table table-striped" data-locale="fr-FR" id="cellHistoryList">
+    <thead>
+        <tr style="border-bottom: 0;">
+            <th style="border-bottom: 0;">Filter</th>
+            <th style="border-bottom: 0;"><input type="date" class="form-control" name="qdate"></th>
+            <th style="border-bottom: 0;">
+                <select class="form-control" name="qduration">
+                    <option>< 1min</option>
+                    <option>< 15min</option>
+                    <option>< 1h</option>
+                    <option>< 2h</option>
+                    <option>< 4h</option>
+                </select>
+            </th>
+            <th style="border-bottom: 0;"><input type="text" class="form-control" placeholder="keyword" name="qname"></th>
+            <th style="border-bottom: 0;"><input type="text" class="form-control" placeholder="Owner" name="qowner"></th>
+            <th style="border-bottom: 0;">
+                <select class="form-control" name="qduration">
+                    <option>terminated</option>
+                    <option>running</option>
+                    <option>dead</option>
+                </select>
+            </th>
+            <th style="border-bottom: 0;"></th>
+        </tr>
+        <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Duration</th>
+            <th>Name</th>
+            <th>Owner</th>
+            <th>State</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>2015-28-30</td>
+            <td>0:18</td>
+            <td><a href="#history/detail">Cell sample 1</a></td>
+            <td><a href="#owner/detail">STARTX</a></td>
+            <td><span class="label label-success">running</span></td>
+            <td>
+                <a href="#cell/detail" class="btn btn-info btn-xs">See detail <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2015-28-28</td>
+            <td>02:30</td>
+            <td><a href="#history/detail">Cell sample 2</a></td>
+            <td><a href="#owner/detail">STARTX</a></td>
+            <td><span class="label label-default">terminated</span></td>
+            <td>
+                <a href="#cell/detail" class="btn btn-info btn-xs">See detail <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>2015-28-28</td>
+            <td>01:47</td>
+            <td><a href="#history/detail">Cell sample 3</a></td>
+            <td><a href="#owner/detail">STARTX</a></td>
+            <td><span class="label label-default">terminated</span></td>
+            <td>
+                <a href="#cell/detail" class="btn btn-info btn-xs">See detail <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>2015-28-27</td>
+            <td>00:01</td>
+            <td><a href="#history/detail">Cell sample 4</a></td>
+            <td><a href="#owner/detail">STARTX</a></td>
+            <td><span class="label label-default">terminated</span></td>
+            <td>
+                <a href="#cell/detail" class="btn btn-info btn-xs">See detail <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+            </td>
+        </tr>
+    </tbody>
+</table>

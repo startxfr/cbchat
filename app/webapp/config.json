@@ -1,0 +1,6 @@
+{
+    "version": "0.1",
+    "debug": true,
+    "api": "http://localhost:8081",
+    "sessionRefresh": 300
+}

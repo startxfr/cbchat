@@ -1,0 +1,279 @@
+<form class="form-horizontal" id="cellAddForm">
+    <div class="container">
+        <div class="row bs-wizard" style="border-bottom:0;">
+            <div class="col-xs-2 col-xs-offset-1 bs-wizard-step" ng-class="((step.isCurrent(1)) ? 'active' : (step.isDone(1)) ? 'complete' : 'disabled')">
+                <div class="text-center bs-wizard-stepnum">Template</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#tab_cellAddForm_step1" class="bs-wizard-dot"></a>
+            </div>
+            <div class="col-xs-2 bs-wizard-step" ng-class="((step.isCurrent(2)) ? 'active' : (step.isDone(2)) ? 'complete' : 'disabled')">
+                <div class="text-center bs-wizard-stepnum">Cell details</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#tab_cellAddForm_step2" class="bs-wizard-dot"></a>
+            </div>
+            <div class="col-xs-2 bs-wizard-step" ng-class="((step.isCurrent(3)) ? 'active' : (step.isDone(3)) ? 'complete' : 'disabled')">
+                <div class="text-center bs-wizard-stepnum">Activities</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#tab_cellAddForm_step3" class="bs-wizard-dot"></a>
+            </div>
+            <div class="col-xs-2 bs-wizard-step" ng-class="((step.isCurrent(4)) ? 'active' : (step.isDone(4)) ? 'complete' : 'disabled')">
+                <div class="text-center bs-wizard-stepnum">Access rules</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#tab_cellAddForm_step4" class="bs-wizard-dot"></a>
+            </div>
+            <div class="col-xs-2 bs-wizard-step" ng-class="((step.isCurrent(5)) ? 'active' : (step.isDone(5)) ? 'complete' : 'disabled')">
+                <div class="text-center bs-wizard-stepnum">Launch</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#tab_cellAddForm_step5" class="bs-wizard-dot"></a>
+            </div>
+        </div>
+    </div>
+    <div ng-show="hasError() === true" class="alert alert-success" role="alert">{{message}} </div>
+    <div class="container steptab" id="tab_cellAddForm_step1">
+        <div class="row">
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail medaillon">
+                    <img src="img/cellTemplate/train.png" alt="Train and transport template">
+                    <div class="caption">
+                        <h3>Train cell</h3>
+                        <p>Cell addapted for train and railways trip</p>
+                        <p>
+                            <button ng-click="chooseTemplate('train')" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Use this template</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail medaillon">
+                    <img src="img/cellTemplate/birthdays.png" alt="Birthdays">
+                    <div class="caption">
+                        <h3>Birthday cell</h3>
+                        <p>Cell addapted for birthday and friends meeting</p>
+                        <p>
+                            <button ng-click="chooseTemplate('friends')" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Use this template</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail medaillon">
+                    <img src="img/cellTemplate/concerts.png" alt="Concerts and music events">
+                    <div class="caption">
+                        <h3>Music events</h3>
+                        <p>Cell addapted during live concert or music events</p>
+                        <p>
+                            <button ng-click="chooseTemplate('music')" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Use this template</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail medaillon">
+                    <img src="img/cellTemplate/sports.png" alt="Sports events">
+                    <div class="caption">
+                        <h3>Sport events</h3>
+                        <p>Cell addapted during live sports events</p>
+                        <p>
+                            <button ng-click="chooseTemplate('sport')" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Use this template</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail medaillon">
+                    <img src="img/cellTemplate/congres.png" alt="Congres, symposium and business events">
+                    <div class="caption">
+                        <h3>Business events</h3>
+                        <p>Cell addapted during congress, symposium or every business events</p>
+                        <p>
+                            <button ng-click="chooseTemplate('business')" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Use this template</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container steptab" id="tab_cellAddForm_step2" >
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <label for="caf_name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-4">
+                        <input ng-model="cell.name" type="text" id="caf_name" class="form-control" placeholder="cell name" name='name'>
+                    </div>
+                    <div class="col-sm-6 form-helptxt">
+                        <p class="text-muted hidden">Your cell name. Limited to 64 characters. Will be used in map and search result.</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="caf_tags" class="col-sm-2 control-label">Hash tags</label>
+                    <div class="col-sm-4">
+                        <input ng-model="cell.tags" type="text" id="caf_tags" class="form-control" placeholder="cell tags" name='tags'>
+                    </div>
+                    <div class="col-sm-6 form-helptxt">
+                        <p class="text-muted hidden">List keyword hash tags to define precisely your cell carateristics</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="caf_category" class="col-sm-2 control-label">Category</label>
+                    <div class="col-sm-4">
+                        <select ng-model="cell.category" class="form-control" name="category" id="caf_category">
+                            <option value="fun">Fun</option>
+                            <option value="sports">Arts</option>
+                            <option value="arts">Arts</option>
+                            <option value="business">Business</option>
+                            <option value="other">other</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 form-helptxt">
+                        <p class="text-muted hidden">Define the main purpose of your cell. Will be usefull to determine who could be interested</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="caf_description" class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-4">
+                        <textarea ng-model="cell.description" name="description" class="form-control" id="caf_description"></textarea>
+                    </div>
+                    <div class="col-sm-6 form-helptxt">
+                        <p class="text-muted hidden">Describe the purpose of your cell to temp users</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="caf_location" class="col-sm-2 control-label">Location</label>
+                    <div class="col-sm-4">
+                        <input ng-model="cell.location" type="hidden" id="caf_location" name='location' value="">
+                        <div id="mapAddCellLocation" style="width: 100%; height: 200px"></div>
+                    </div>
+                    <div class="col-sm-6 form-helptxt">
+                        <p class="text-muted hidden">Localisation of your event where this cell is relevant</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <button ng-click="goStep(1)" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Previous step</button>
+                        <button ng-click="goStep(3)" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Next step</button>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+    <div class="container steptab" id="tab_cellAddForm_step3">
+
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <button ng-click="goStep(2)" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Previous step</button>
+                        <button ng-click="goStep(4)" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Next step</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container steptab" id="tab_cellAddForm_step4">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <label for="caf_isvisible" class="col-sm-2 control-label">Is Visible</label>
+                    <div class="col-sm-4">
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default active">
+                                <input type="radio" name="is_visible" value="yes" id="caf_isvisible" checked> Yes
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="is_visible" value="no"> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-helptxt">
+                        <p class="text-muted hidden">Define if your cell could be find in search engine</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="caf_accessrule" class="col-sm-2 control-label">Access rule</label>
+                    <div class="col-sm-10">
+                        <p><input type="radio" name="access_rule" value="public" id="caf_accessrule" checked> <strong>Open to everyone</strong></p>
+                        <p><em>Default choice. Everybody can join your cell and participate</em></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <p><input type="radio" name="access_rule" value="public"> <strong>Restricted to a location</strong></p>
+                        <p><em>Only person physically present around your cell can join in and participate</em></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <p><input type="radio" name="access_rule" value="public"> <strong>Guest list</strong></p>
+                        <p><em>Only person added to the guest list can participate and join the cell</em></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <p><input type="radio" name="access_rule" value="public"> <strong>Passcode</strong></p>
+                        <p><em>Only person who have the cell password can enter the cell</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <button ng-click="goStep(3)" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Previous step</button>
+                        <button ng-click="goStep(5)" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Next step</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container steptab" id="tab_cellAddForm_step5">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <label for="caf_start" class="col-sm-2 control-label">Start date</label>
+                    <div class="col-sm-2">
+                        <input ng-model="start_date" type="date" class="form-control" name="start_date" id="caf_start" required>
+                    </div>
+                    <div class="col-sm-2">
+                        <input ng-model="start_time" type="time" class="form-control" name="start_time" id="caf_start_time" required>
+                    </div>
+                    <div class="col-sm-6 form-helptxt">
+                        <p class="text-muted hidden">Coud not be in the past and within the 5 next minute. </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="caf_duration" class="col-sm-2 control-label">Duration</label>
+                    <div class="col-sm-4">
+                        <div class="range">
+                            <input ng-model="duration_range" type="range" id="caf_duration" class="form-control" value="5" min="5" max="180" step="5" name="duration_range" required>
+                            <output id="caf_durationrange">{{duration_display}}</output>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-helptxt">
+                        <p class="text-muted hidden">Lifetime of your cell, in range of 5min, maximum 3h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <button ng-click="resetSteps()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Start again</button>
+                        <button ng-click="goStep(4)" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Previous step</button>
+                        <button ng-click="save()" type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,159 @@
+<div role="tabpanel" id="cellSearchPanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills nav-justified" role="tablist">
+        <li role="presentation" class="active"><a href="#tab_search_location" aria-controls="home" role="tab" data-toggle="tab">By location</a></li>
+        <li role="presentation"><a href="#tab_search_invitation" aria-controls="profile" role="tab" data-toggle="tab">Invitations <span class="badge">1</span></a></li>
+        <li role="presentation"><a href="#tab_search_qrcode" aria-controls="profile" role="tab" data-toggle="tab">Scan QRCode</a></li>
+        <li role="presentation"><a href="#tab_search_search" aria-controls="profile" role="tab" data-toggle="tab">Search</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab_search_location">
+            <div class="panel-body">
+                <section id="pageFind">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-9 col-lg-8">
+                                <div id="cellSearchPanel_gmap"></div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 col-lg-4">
+                                <h3>Filters</h3>
+                                <form id="findForm">
+                                    <input type="hidden" name="latLgn" value="">
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <div class="form-control-static">
+                                            <div class="btn-group" data-toggle="buttons">
+                                                <label class="btn btn-default">
+                                                    <input type="checkbox" name="state[]" value="scheduled"> Scheduled
+                                                </label>
+                                                <label class="btn btn-default">
+                                                    <input type="checkbox" name="state[]" value="departure"> Departure
+                                                </label>
+                                                <label class="btn btn-default">
+                                                    <input type="checkbox" name="state[]" value="running"> Running
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="start_from">When</label>
+                                        <div class="row">
+                                            <div class="col-xs-2">
+                                                from
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <input class="form-control" type="time" name="start_from"/>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                to
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <input class="form-control" type="time" name="start_until"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="findfilter_where">Where</label>
+                                        <input id="findfilter_where" class="form-control" type="text" value=""  name="where"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="findfilter_around">Around</label>
+                                        <div class="input-group">
+                                            <input id="findfilter_around" class="form-control" type="range" value="2" min="1" max="20" step="1" name="around" onchange="findFilter_displayAround.innerHTML = value + ' Km'"/>
+                                            <div class="input-group-addon" id="findFilter_displayAround">2 Km</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab_search_invitation">
+            <div class="panel-body">
+                <table class="table table-striped" data-locale="fr-FR" id="cellHistoryList">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Duration</th>
+                            <th>Name</th>
+                            <th>Owner</th>
+                            <th>State</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2015-28-30</td>
+                            <td>0:18</td>
+                            <td><a href="#history/detail">Cell sample 1</a></td>
+                            <td><a href="#owner/detail">STARTX</a></td>
+                            <td><span class="label label-success">running</span></td>
+                            <td>
+                                <a href="#cell/detail" class="btn btn-info btn-xs">Enter this cell <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab_search_qrcode">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
+                        <br><br><br><br><br>
+                        <a href="http://qrdroid.com/scan" target="_blank" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> Scan a QRCode</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab_search_search">
+            <div class="panel-body">
+                <form class="form-horizontal" id="formMyprofileActivities" name="formMyprofileActivities">
+                    <div class="form-group">
+                        <label for="myprofile_activities_chess" class="col-sm-3 control-label">Chess</label>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete my activity</button>
+                            <button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> View score</button>
+                        </div>
+                        <div class="col-sm-5 form-helptxt">
+                            <p class="text-muted hidden">Manipulate your actions when using the Chess activity</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="myprofile_activities_meetup" class="col-sm-3 control-label">File Exchange</label>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete my activity</button>
+                            <button type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Configure</button>
+                        </div>
+                        <div class="col-sm-5 form-helptxt">
+                            <p class="text-muted hidden">Manipulate your actions when using the File Exchange activity</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="myprofile_activities_meetup" class="col-sm-3 control-label">Meetup</label>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete my activity</button>
+                        </div>
+                        <div class="col-sm-5 form-helptxt">
+                            <p class="text-muted hidden">Manipulate your actions when using the Meetup activity</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="myprofile_activities_meetup" class="col-sm-3 control-label">Treasure Quest</label>
+                        <div class="col-sm-4">
+                            <p><em>Never used</em></p>
+                        </div>
+                        <div class="col-sm-5 form-helptxt">
+                            <p class="text-muted hidden">Manipulate your actions when using the Treasure Quest activity</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

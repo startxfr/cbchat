@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="description" content="POK cbchat">
+        <meta name="keywords" content="killer app">
+        <meta name="author" content="dev@startx.fr">
+        <title>Tempo App</title>
+        <link href="/jslibs/bootstrap.min.css" rel="stylesheet">
+        <link href="/jslibs/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="/jslibs/bootstrap-table.min.css" rel="stylesheet">
+        <link href="/jslibs/cbchat.css" rel="stylesheet">
+        <link href="app.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Russo+One|Play:400,700' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="https://www.google.com/jsapi?debug=true"></script>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="topbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainmenu" aria-expanded="false" aria-controls="mainmenu">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#pageHome">
+                        <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> Tempo
+                    </a>
+                </div>
+                <div id="mainmenu" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>&nbsp; Go <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><i>None</i></li>
+                            </ul>
+                        </li>
+                        <li><a href="#pageFind"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Find</a></li>
+                        <li><a href="#pageHistory"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp; History</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#pageProfil"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section id="pageFind" class="hidden">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-9 col-lg-8">
+                        <div id="findMap"></div>
+                    </div>
+                    <div class="col-xs-12 col-md-3 col-lg-4">
+                        <h3>Filters</h3>
+                        <form id="findForm">
+                            <input type="hidden" name="latLgn" value="">
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <div class="form-control-static">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="checkbox" name="state[]" value="scheduled"> Scheduled
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="checkbox" name="state[]" value="departure"> Departure
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="checkbox" name="state[]" value="running"> Running
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="start_from">When</label>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        from
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input class="form-control" type="time" name="start_from"/>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        to
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input class="form-control" type="time" name="start_until"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="findfilter_where">Where</label>
+                                <input id="findfilter_where" class="form-control" type="text" value=""  name="where"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="findfilter_around">Around</label>
+                                <div class="input-group">
+                                    <input id="findfilter_around" class="form-control" type="range" value="2" min="1" max="20" step="1" name="around" onchange="findFilter_displayAround.innerHTML = value + ' Km'"/>
+                                    <div class="input-group-addon" id="findFilter_displayAround">2 Km</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="pageHistory" class="hidden">
+            <div class="container">
+                <h2>Your cbchat history</h2>
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <h3>XXXXXXXXXXXXX</h3>
+                        <ul class="list-group" id="pannelList">
+                        </ul>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pannelLogBox" aria-expanded="false" aria-controls="pannelLogBox">
+                            See logs
+                        </button>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="collapse" id="pannelLogBox">
+                            <h3>TempoLog</h3>
+                            <ul class="list-group" id="pannelLog">
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="pageHome" class="hidden">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3>Welcome to cbchat</h3>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="container">
+            <p>
+                &copy; 2015 STARTX. &middot; 
+            </p>
+        </footer>
+        <script type="text/javascript" src="/jslibs/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="/jslibs/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/jslibs/bootstrap-table.min.js"></script>
+        <script type="text/javascript" src="/jslibs/locale/bootstrap-table-en-US.min.js"></script>
+        <script type="text/javascript" src="/jslibs/async.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+        <script type="text/javascript" src="/jslibs/cbchat.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
