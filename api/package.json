@@ -10,7 +10,7 @@
     "jsdom": "~3.1.2",
     "couchbase": "~3.2.5",
     "node-gyp": "~8.4.1",
-    "aws-sdk": "2.814.0",
+    "aws-sdk": "2.1354.0",
     "async": "~1.0.0",
     "merge": "~2.1.1",
     "timer-machine": "~1.0.1",
