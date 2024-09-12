@@ -5,8 +5,8 @@
     "url": "https://github.com/startxfr/cbchat/issues"
   },
   "dependencies": {
-    "express": "4.16.0",
-    "serve-static" : "1.13.0"
+    "express": "4.21.0",
+    "serve-static" : "1.16.1"
   },
   "description": "sample app for Couchbase",
   "private": true,
