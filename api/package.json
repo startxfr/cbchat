@@ -8,7 +8,7 @@
     "change-case": "~2.3.0",
     "socket.io-client": "~3.1.0",
     "jsdom": "~3.1.2",
-    "couchbase": "~3.2.5",
+    "couchbase": "~4.0.0",
     "node-gyp": "~8.4.1",
     "aws-sdk": "2.814.0",
     "async": "~1.0.0",
